@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class clientes(models.Model):
-    idCliente = models.IntegerField(primary_key=True)
+    idCliente = models.AutoField(primary_key=True)
     idInfoPago = models.ForeignKey('Pagos.pagos', on_delete=models.CASCADE)
     idDireccion = models.ForeignKey('direcciones', on_delete=models.CASCADE)
     cNombre = models.CharField(max_length=30)
@@ -11,6 +11,13 @@ class clientes(models.Model):
     cApellidoMaterno = models.CharField(max_length=30)
     cAlias = models.CharField(max_length=11, null=True, blank=True)
     cDetalle = models.CharField(max_length=15, null=True, blank=True)
+    bActivo = models.BooleanField(default=True)
+
+class sucursales(models.Model):
+    idSucursal = models.AutoField(primary_key=True)
+    idDireccion = models.ForeignKey('direcciones', on_delete=models.CASCADE)
+    cTitular = models.CharField(max_length=30)
+    bActivo = models.BooleanField(default=True)
 
 class direcciones(models.Model):
     idDireccion = models.AutoField(primary_key=True)

@@ -56,6 +56,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'appPagosInternets.urls'
+AUTH_USER_MODEL = 'Usuarios.CustomUser'
+
 
 TEMPLATES = [
     {
