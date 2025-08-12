@@ -7,8 +7,8 @@ from django.db.models import CASCADE
 
 class CustomUser(AbstractUser):
     #nuevos campos
-    idSucursal = models.ForeignKey('Clientes.sucursales', on_delete=CASCADE)
-    idTipoUsuario = models.ForeignKey('TiposUsuarios', on_delete=CASCADE)
+    idSucursal = models.ForeignKey('Clientes.sucursales', on_delete=CASCADE, blank=True, null=True)
+    idTipoUsuario = models.ForeignKey('TiposUsuarios', on_delete=CASCADE, blank=True, null=True)
 
     #Campos actualizados
     email = models.EmailField(blank=True, null=True)     
