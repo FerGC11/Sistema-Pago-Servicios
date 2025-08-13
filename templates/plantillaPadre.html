@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema Pagos</title>
+
+    <!-- Estilos globales -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <!-- Estilos específicos por app -->
+    {% if current_app %}
+        <link rel="stylesheet" href="{% static current_app|add:'/css/'|add:current_app|add:'.css' %}">
+    {% endif %}
+</head>
+<body>
+
+    {% block content %}{% endblock %}
+
+    <!-- Scripts globales -->
+    <script src="{% static 'js/scripts.js' %}"></script>
+
+    <!-- Scripts específicos por app -->
+    {% if current_app %}
+        <script src="{% static current_app|add:'/js/'|add:current_app|add:'.js' %}"></script>
+    {% endif %}
+</body>
+</html>

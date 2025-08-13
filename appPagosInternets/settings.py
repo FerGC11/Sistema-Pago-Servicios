@@ -62,14 +62,17 @@ AUTH_USER_MODEL = 'Usuarios.CustomUser'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [
+            BASE_DIR / 'templates',  # templates globales
+        ],
+        'APP_DIRS': True, # busca templates dentro de cada app
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.common.context_processors.app_name_context',
             ],
         },
     },
@@ -127,7 +130,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+#STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+# Carpeta global para archivos estáticos
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # estilos/scripts globales
+]
+
+# Para colectar todo con collectstatic (producción)
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# -------------------
+# MEDIA FILES (si usas imágenes subidas por usuarios)
+# -------------------
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
