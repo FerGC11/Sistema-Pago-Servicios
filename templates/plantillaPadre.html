@@ -3,6 +3,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Pagos</title>
 
     <!-- Estilos globales -->
@@ -14,8 +15,19 @@
     {% endif %}
 </head>
 <body>
+    <div class="contenedorPrincipal">
+        <header class="contenedorPrincipal__encabezado">
+            <h1 class="contenedorPrincipal__encabezado__titulo">Inicio</h1> 
+            <img src="{% static 'icons/cerrar-sesion.png' %}" alt="cerrar sesion" class="contenedorPrincipal__encabezado__icono-cerrar-sesion">   
+        </header>
 
-    {% block content %}{% endblock %}
+        <div class="contenedorPrincipal__contenidoPrincipal">
+            {% block content %}{% endblock %}
+        </div>
+        
+        <footer class="contenedorPrincipal__piePagina">Developed by Luis Fernando Gasca</footer>
+    </div>
+    
 
     <!-- Scripts globales -->
     <script src="{% static 'js/scripts.js' %}"></script>

@@ -1,3 +1,54 @@
-h1{
-    color: red;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.contenedorPrincipal {
+    width: 100vw;
+    height: 100vh;
+}
+
+.contenedorPrincipal__encabezado{
+    padding: 10px;
+    width: 100%;
+    height: 5%;
+    background-color: #b6deff;
+    color: #1E3A8A;
+    display: flex;
+    align-items: center;
+    position: relative; /* Para posicionamiento del icono */
+}
+
+.contenedorPrincipal__encabezado__titulo{
+    flex: 1;          /* Ocupa todo el espacio disponible */
+    text-align: center; /* Centra el texto horizontalmente */
+}
+
+.contenedorPrincipal__encabezado__icono-cerrar-sesion {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    right: 10px; /* Ajusta el margen derecho */
+}
+
+
+
+.contenedorPrincipal__contenidoPrincipal{
+    padding: 20px;
+    width: 100%;
+    height: 90%;
+    background-color: #eef8ff; /* Fondo claro */
+}
+
+.contenedorPrincipal__piePagina {
+    padding: 10px;
+    width: 100%;
+    height: 5%;
+    background-color: #b6deff;
+    color: #1E3A8A;
+    display: flex;
+    align-items: center; /* centra verticalmente el contenido */
+    justify-content: flex-end; /* Mueve el contenido al borde derecho */
 }
