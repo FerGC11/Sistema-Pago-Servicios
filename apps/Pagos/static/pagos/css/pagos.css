@@ -1,3 +1,45 @@
-p{
-    color: green;
+.contenedor-pagos{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
+
+.seccion-acciones-pagos {
+    display: flex;
+    justify-content: space-between; /* Fecha a la izquierda, botones a la derecha */
+    align-items: center;
+}
+
+.seccion-acciones-pagos samp{
+    font-size: 24px;
+    font-weight: 550;
+}
+
+.seccion-acciones-pagos__botones {
+    display: flex;
+    gap: 10px; /* Separación entre botones */
+}
+
+.boton-NuevoServicio{
+    background-color: #22C55E;
+}
+
+.boton-RegistrarPago{
+    background-color: #014fe5;
+}
+
+.botones-Acciones{
+    background-color: #499effe3;
+    /*background-color: #3b92f6;*/
+}
+
+.estatus-pagado{
+    background-color: #06B6D4; /* Turquesa */
+    font-size: 14px;
+}
+
+.estatus-pendiente{
+    background-color: #8B5CF6; /* Morado */
+    font-size: 14px;
+}
+

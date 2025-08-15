@@ -1,7 +1,59 @@
 {% extends 'plantillaPadre.html' %}
+{% load static %}
 
 {% block content %}
 
-<p>Contenido específico de pagos</p>
+<div class="contenedor-pagos">
+    <div class="seccion-filtro">
+        <button>Filtrar ▼</button>
+    </div>
+
+    <div class="seccion-acciones-pagos">
+        <samp>15/08/2025</samp>
+        <div class="seccion-acciones-pagos__botones">
+            <button class="botones boton-NuevoServicio"><img src="{% static 'icons/registrar.png' %}" alt="Regitrar nuevo servicio"></button>
+            <button class="botones boton-RegistrarPago"><img src="{% static 'icons/agregar.svg' %}" alt="Registrar pago"></button>
+        </div>
+    </div>
+
+    <div class="seccion-tabla">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Referencia</th>
+                    <th>Importe</th>
+                    <th>Estatus</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Luis Fernando Gasca Cano</td>
+                    <td>226480</td>
+                    <td>250</td>
+                    <td>Pago en tiempo</td>
+                    <td><span class="estatus estatus-pagado">Pagado</span></td>
+                    <td>
+                        <button class="botones botones-Acciones " title="Copiar"><img src="{% static 'icons/copy.png' %}" alt="Icono copiar"></button>
+                        <button class="botones botones-Acciones " title="Cambiar estatus"><img src="{% static 'icons/detalles.png' %}" alt="Icono copiar"></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ramon Garcia Garcia</td>
+                    <td>226627</td>
+                    <td>250</td>
+                    <td>Vencido</td>
+                    <td><span class="estatus estatus-pendiente">Pendiente</span></td>
+                    <td>
+                        <button class="botones botones-Acciones" title="Copiar"><img src="{% static 'icons/copy.png' %}" alt="Icono copiar"></button>
+                        <button class="botones botones-Acciones" title="Cambiar estatus"><img src="{% static 'icons/detalles.png' %}" alt="Icono copiar"></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 {% endblock %}
