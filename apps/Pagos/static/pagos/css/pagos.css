@@ -1,7 +1,16 @@
 .contenedor-pagos{
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 35px;
+}
+
+.Seccion-principal-pagos{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Seccion-principal-pagos__seccion-1{
+    width: 45%;
 }
 
 .seccion-acciones-pagos {
@@ -15,16 +24,11 @@
     font-weight: 550;
 }
 
-.seccion-acciones-pagos__botones {
-    display: flex;
-    gap: 10px; /* Separación entre botones */
-}
-
-.boton-NuevoServicio{
+.boton-Filtro{
     background-color: #22C55E;
 }
 
-.boton-RegistrarPago{
+.boton-NuevoServicio{
     background-color: #014fe5;
 }
 
@@ -42,4 +46,10 @@
     background-color: #8B5CF6; /* Morado */
     font-size: 14px;
 }
+
+.Seccion-principal-pagos__seccion-2{
+    width: 45%;
+    border: #014fe5;
+}
+
 
