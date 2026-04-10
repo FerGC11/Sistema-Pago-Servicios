@@ -4,18 +4,17 @@
 {% block content %}
 
 <div class="contenedor-pagos">
-    <div class="seccion-filtro">
-        <button>Filtrar ▼</button>
-    </div>
 
     <div class="seccion-acciones-pagos">
-        <samp>15/08/2025</samp>
+        <div>
+            <samp>15/08/2025</samp>
+        </div>
         <div class="seccion-acciones-pagos__botones">
-            <button class="botones boton-NuevoServicio"><img src="{% static 'icons/registrar.png' %}" alt="Regitrar nuevo servicio"></button>
+            <button class="botones boton-NuevoServicio"><img src="{% static 'icons/registrar.png' %}" alt="Regitrar nuevo servicio" data-bs-toggle="modal" data-bs-target="#modalRegistro"></button>
             <button class="botones boton-RegistrarPago"><img src="{% static 'icons/agregar.svg' %}" alt="Registrar pago"></button>
         </div>
     </div>
-
+    
     <div class="seccion-tabla">
         <table>
             <thead>
@@ -53,6 +52,25 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalRegistro">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            ...
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        </div>
+    </div>
     </div>
 </div>
 
