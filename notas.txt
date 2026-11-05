@@ -1,1 +1,16 @@
 Revizar como usar la tabla de usuarios
+
+
+
+---------------------
+psycopg==3.2.9
+psycopg-binary==3.2.9
+psycopg2-binary==2.9.10
+psycopg2-binary==2.9.10 
+-----------------esta la quite de requiremets, en una compu con otra version de python no funcionaba
+
+
+
+--------comandos para arrancar el entorno virtual en la lap dell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass 
+.\env\Scripts\Activate.ps1

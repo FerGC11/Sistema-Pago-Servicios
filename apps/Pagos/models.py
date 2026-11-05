@@ -7,11 +7,12 @@ class pagos(models.Model):
     idInfoPago = models.ForeignKey('informacionPagos', on_delete=models.CASCADE)
     idEstatusPago = models.ForeignKey('estatusPagos', on_delete=models.CASCADE)
     idEstadoPago = models.ForeignKey('estadosPagos', on_delete=models.CASCADE)
+    importe = models.IntegerField(null=True, blank=True)
     dFechaPago = models.DateField()
 
 class informacionPagos(models.Model):
     idInfoPago = models.AutoField(primary_key=True)
-    iRferencia = models.IntegerField()
+    iReferencia = models.IntegerField(null=True, blank=True)
     iImporte = models.IntegerField(null=True, blank=True)
     dFechaCorte = models.DateField(null=True, blank=True)
     

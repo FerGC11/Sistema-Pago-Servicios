@@ -7,11 +7,266 @@
 
     <div class="seccion-acciones-pagos">
         <div>
-            <samp>15/08/2025</samp>
+            <samp>{{ fechaActual|date:"d/m/Y" }}</samp>
         </div>
         <div class="seccion-acciones-pagos__botones">
-            <button class="botones boton-NuevoServicio"><img src="{% static 'icons/registrar.png' %}" alt="Regitrar nuevo servicio" data-bs-toggle="modal" data-bs-target="#modalRegistro"></button>
-            <button class="botones boton-RegistrarPago"><img src="{% static 'icons/agregar.svg' %}" alt="Registrar pago"></button>
+            <button 
+            class="botones boton-NuevoServicio"
+            data-bs-toggle="collapse" 
+            data-bs-target="#collapseRegistrarPago"
+            aria-expanded="false" 
+            aria-controls="collapseRegistrarPago"
+            title="Registrar Pago"
+            type="button">
+                <img src="{% static 'icons/registrar.png' %}">
+            </button>
+
+            <button 
+            class="botones boton-RegistrarPago"
+            data-bs-toggle="collapse" 
+            data-bs-target="#collapseRegistrarNuevServicio"
+            aria-expanded="false" 
+            aria-controls="collapseRegistrarNuevServicio"
+            title="Nuevo Servicio"
+            type="button">
+                <img src="{% static 'icons/agregar.svg' %}" alt="Registrar pago">
+            </button>
+        </div>
+    </div>
+
+    <!--Collapses Registrar Pago y Nuevo Servicio-->
+    <div class="seccion-collapse-pagos" id="formulariosPagos">
+        <div class="collapse" id="collapseRegistrarPago" data-bs-parent="#formulariosPagos">
+            <div class="card card-body">
+                <form class="formulario-registro-pago" method="post" action="{% url 'pagos:registrarPago' %}">
+                    {% csrf_token %}
+                    <div class="campo-formulario-pago campo-cliente">
+                        <label for="buscadorClientePago">Cliente y referencia de pago</label>
+                        <input
+                            id="buscadorClientePago"
+                            class="campo-formulario-pago__control"
+                            type="text"
+                            name="cliente_busqueda"
+                            data-url-busqueda="{% url 'pagos:buscarCliente' %}"
+                            aria-controls="resultadosClientesPago"
+                            placeholder="Buscar por nombre, referencia o alias..."
+                            autocomplete="off"
+                            required
+                        >
+                        <input 
+                            type="hidden" 
+                            name="idInfoPago" 
+                            id="idInfoPago"
+                        >
+
+                        <!-- Aquí aparecerán las coincidencias -->
+                        <div
+                            id="resultadosClientesPago"
+                            class="resultados-clientes"
+                            aria-live="polite"
+                        >
+                        </div>
+                    </div>
+
+                    <div class="campo-formulario-pago campo-importe">
+                        <label for="importePago">Importe</label>
+                        <input
+                            id="importePago"
+                            class="campo-formulario-pago__control"
+                            type="number"
+                            name="importe"
+                            min="0"
+                            step="50"
+                            placeholder="$ 0.00"
+                            required
+                        >
+                    </div>
+
+                    <input type="hidden" name="idEstadoPago" value="1">
+                    <label class="campo-vencido" for="pagoVencido">
+                        <input id="pagoVencido" type="checkbox" name="idEstadoPago" value="2">
+                        <span>Vencido</span>
+                    </label>
+
+                    <div class="acciones-formulario-pago">
+                        <button class="boton-formulario-pago" type="submit">Guardar</button>
+                        <button
+                            class="boton-formulario-pago boton-cancelar-pago"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapseRegistrarPago"
+                            aria-controls="collapseRegistrarPago"
+                        >
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="collapse" id="collapseRegistrarNuevServicio" data-bs-parent="#formulariosPagos">
+            <div class="card card-body">
+                <form class="formulario-nuevo-servicio" method="post" action="{% url 'pagos:registrarServicio' %}">
+                    {% csrf_token %}
+
+                    <div class="campo-formulario-pago campo-nombre">
+                        <label for="nombreServicio">Nombre</label>
+                        <input 
+                            id="nombreServicio" 
+                            class="campo-formulario-pago__control" 
+                            type="text" 
+                            name="cNombre" 
+                            placeholder="Agrega nombre"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo-formulario-pago campo-primer-apellido">
+                        <label for="primerApellidoServicio">Primer Apellido</label>
+                        <input 
+                            id="primerApellidoServicio" 
+                            class="campo-formulario-pago__control" 
+                            type="text" 
+                            name="cApellidoPaterno" 
+                            placeholder="Agrega Apellido Paterno"
+                            required>
+                    </div>
+
+                    <div class="campo-formulario-pago campo-segundo-apellido">
+                        <label for="segundoApellidoServicio">Segundo Apellido</label>
+                        <input 
+                            id="segundoApellidoServicio" 
+                            class="campo-formulario-pago__control" 
+                            type="text" 
+                            name="cApellidoMaterno"
+                            placeholder="Agrega Apellido Materno"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo-formulario-pago campo-alias">
+                        <label for="aliasServicio">Alias</label>
+                        <input id="aliasServicio" 
+                            class="campo-formulario-pago__control" 
+                            type="text" 
+                            name="cAlias"
+                            placeholder="Agrega Alias"    
+                        >
+                    </div>
+
+                    <div class="campo-formulario-pago campo-detalle">
+                        <label for="detalleServicio">Detalle</label>
+                        <input 
+                            id="detalleServicio" 
+                            class="campo-formulario-pago__control" 
+                            type="text" 
+                            name="cDetalle"
+                            placeholder="Agrega Detalle"
+                        >
+                    </div>
+
+                    <div class="campo-formulario-pago campo-colonia">
+                        <label for="coloniaServicio">Colonias</label>
+                        <select
+                            id="coloniaServicio"
+                            class="campo-formulario-pago__control"
+                            type="text"
+                            name="idColonia"
+                            list="coloniasServicio"
+                            placeholder="Buscar colonia..."
+                            autocomplete="off"
+                        >
+                            <option value="">Selecciona una colonia</option>
+                            {% for colonia in colonias %}
+                                <option value="{{ colonia.idColonia }}">{{ colonia.cColonia }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="campo-formulario-pago campo-calle">
+                        <label for="calleServicio">Calle</label>
+                        <input 
+                            id="calleServicio" 
+                            class="campo-formulario-pago__control" 
+                            type="text" 
+                            name="cCalle" 
+                            placeholder="Agrega Calle"
+                            >
+                    </div>
+
+                    <div class="campo-formulario-pago campo-numero">
+                        <label for="numeroServicio">Número</label>
+                        <input 
+                            id="numeroServicio" 
+                            class="campo-formulario-pago__control" 
+                            type="text" 
+                            name="cNumero" 
+                            placeholder="Agrega Numero"
+                        >
+                    </div>
+
+                    <div class="campos-datos-pago-servicio">
+                        <div class="campo-formulario-pago campo-referencia">
+                            <label for="referenciaServicio">Referencia</label>
+                            <input 
+                                id="referenciaServicio" 
+                                class="campo-formulario-pago__control" 
+                                type="number" 
+                                name="iReferencia" 
+                                min="0" 
+                                step="1" 
+                                placeholder="00000"
+                            >
+                        </div>
+
+                        <div class="campo-formulario-pago campo-importe-servicio">
+                            <label for="importeServicio">Importe</label>
+                            <input 
+                                id="importeServicio" 
+                                class="campo-formulario-pago__control" 
+                                type="number" 
+                                name="iImporte" 
+                                min="0" 
+                                step="50" 
+                                placeholder="$ 0.00"
+                                required
+                            >
+                        </div>
+
+                        <div class="campo-formulario-pago campo-fecha-corte">
+                            <label for="fechaCorteServicio">Fecha corte</label>
+                            <input 
+                                id="fechaCorteServicio" 
+                                class="campo-formulario-pago__control" 
+                                type="date" 
+                                name="dFechaCorte" 
+                            >
+                        </div>
+
+                        <label class="campo-vencido campo-pagar" for="pagar" hidden>
+                            <input 
+                                id="pagar" 
+                                type="checkbox" 
+                                name="nuevoPago" 
+                                checked
+                            >
+                            <span>Pagar</span>
+                        </label>
+                    </div>
+
+                    <div class="acciones-formulario-servicio">
+                        <button class="boton-formulario-pago" type="submit">Guardar</button>
+                        <button
+                            class="boton-formulario-pago boton-cancelar-pago"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapseRegistrarNuevServicio"
+                            aria-controls="collapseRegistrarNuevServicio"
+                        >
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     
@@ -22,55 +277,155 @@
                     <th>Cliente</th>
                     <th>Referencia</th>
                     <th>Importe</th>
-                    <th>Estatus</th>
                     <th>Estado</th>
+                    <th>Estatus</th>
                     <th>Acciones</th>
                 </tr>
-            </thead>
+            </thead>    
             <tbody>
+                {% for pago in pagosDia %}
                 <tr>
-                    <td>Luis Fernando Gasca Cano</td>
-                    <td>226480</td>
-                    <td>250</td>
-                    <td>Pago en tiempo</td>
-                    <td><span class="estatus estatus-pagado">Pagado</span></td>
+                    <td>{% for cliente in pago.idInfoPago.clientes_set.all %}{{ cliente.cNombre }} {{ cliente.cApellidoPaterno }} {{ cliente.cApellidoMaterno }}{% if not forloop.last %}<br>{% endif %}{% empty %}Sin cliente asociado{% endfor %}</td>
+                    <td>{{ pago.idInfoPago.iReferencia }}</td>
+                    <td>{{ pago.importe }}</td>
+                    <td{% if pago.idEstadoPago.cEstadoPago|lower == "vencido" %} class="estado-pago-vencido"{% endif %}>{{ pago.idEstadoPago.cEstadoPago }}</td>
+                    <td><button class="estatus boton-estatus{% if pago.idEstatusPago.cEstatusPago|lower == 'pagado' %} estatus-pagado{% elif pago.idEstatusPago.cEstatusPago|lower == 'pendiente' %} estatus-pendiente{% endif %}" type="button" data-bs-toggle="modal" data-bs-target="#modalConfirmacionPago" data-pago-id="{{ pago.pk }}" data-referencia="{{ pago.idInfoPago.iReferencia }}">{{ pago.idEstatusPago.cEstatusPago }}</button></td>
                     <td>
-                        <button class="botones botones-Acciones " title="Copiar"><img src="{% static 'icons/copy.png' %}" alt="Icono copiar"></button>
-                        <button class="botones botones-Acciones " title="Cambiar estatus"><img src="{% static 'icons/detalles.png' %}" alt="Icono copiar"></button>
+                        <button class="botones botones-Acciones" type="button" title="Copiar referencia" data-copiar-referencia="{{ pago.idInfoPago.iReferencia|default_if_none:'' }}"><img src="{% static 'icons/copy.png' %}" alt="Icono copiar"></button>
+                        <button class="botones botones-Acciones" type="button" title="Ver Detalle" data-bs-toggle="modal" data-bs-target="#modalDetalleServicio" data-detalle-url="{% url 'pagos:detallePago' pago.pk %}"><img src="{% static 'icons/detalles.png' %}" alt="Icono Detalles"></button>
                     </td>
                 </tr>
+                {% empty %}
                 <tr>
-                    <td>Ramon Garcia Garcia</td>
-                    <td>226627</td>
-                    <td>250</td>
-                    <td>Vencido</td>
-                    <td><span class="estatus estatus-pendiente">Pendiente</span></td>
-                    <td>
-                        <button class="botones botones-Acciones" title="Copiar"><img src="{% static 'icons/copy.png' %}" alt="Icono copiar"></button>
-                        <button class="botones botones-Acciones" title="Cambiar estatus"><img src="{% static 'icons/detalles.png' %}" alt="Icono copiar"></button>
-                    </td>
+                    <td colspan="6">No hay pagos registrados.</td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
+</div>
 
-    <!-- Modals -->
-    <div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="modalRegistro">Modal title</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            ...
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+<!-- Modals -->
+
+<div class="modal fade" id="modalDetalleServicio" tabindex="-1" aria-labelledby="tituloModalDetalleServicio" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content modal-detalle-servicio">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="tituloModalDetalleServicio">Detalle del servicio</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <p id="detalleMensaje" role="status" aria-live="polite"></p>
+                <div id="detalleSelectorContenedor" class="campo-formulario-pago" hidden>
+                    <label for="detalleSelectorCliente">Cliente asociado</label>
+                    <select id="detalleSelectorCliente" class="campo-formulario-pago__control"></select>
+                </div>
+                <form class="formulario-detalle-servicio">
+                    <div class="campo-formulario-pago campo-modal-nombre">
+                        <label for="detalleNombre">Nombre</label>
+                        <input id="detalleNombre" class="campo-formulario-pago__control" type="text">
+                    </div>
+                    <div class="campo-formulario-pago">
+                        <label for="detallePrimerApellido">Primer Apellido</label>
+                        <input id="detallePrimerApellido" class="campo-formulario-pago__control" type="text">
+                    </div>
+                    <div class="campo-formulario-pago">
+                        <label for="detalleSegundoApellido">Segundo Apellido</label>
+                        <input id="detalleSegundoApellido" class="campo-formulario-pago__control" type="text">
+                    </div>
+                    <div class="campo-formulario-pago">
+                        <label for="detalleAlias">Alias</label>
+                        <input id="detalleAlias" class="campo-formulario-pago__control" type="text">
+                    </div>
+                    <div class="campo-formulario-pago">
+                        <label for="detalleServicioTexto">Detalle</label>
+                        <input id="detalleServicioTexto" class="campo-formulario-pago__control" type="text">
+                    </div>
+                    <div class="campo-formulario-pago">
+                        <label for="detalleEstado">Estado</label>
+                        <input id="detalleEstado" class="campo-formulario-pago__control" type="text" list="estadosDetalle">
+                        <datalist id="estadosDetalle">
+                            <option></option><option></option><option></option><option></option><option></option>
+                        </datalist>
+                    </div>
+                    <div class="campo-formulario-pago">
+                        <label for="detalleMunicipio">Municipio</label>
+                        <input id="detalleMunicipio" class="campo-formulario-pago__control" type="text" list="municipiosDetalle">
+                        <datalist id="municipiosDetalle">
+                            <option></option><option></option><option></option><option></option>
+                        </datalist>
+                    </div>
+                    <div class="campo-formulario-pago">
+                        <label for="detalleColonia">Colonia</label>
+                        <input id="detalleColonia" class="campo-formulario-pago__control" type="text" list="coloniasDetalle">
+                        <datalist id="coloniasDetalle">
+                            <option></option><option></option><option></option><option></option>
+                        </datalist>
+                    </div>
+                    <div class="campo-formulario-pago">
+                        <label for="detalleCalle">Calle</label>
+                        <input id="detalleCalle" class="campo-formulario-pago__control" type="text">
+                    </div>
+                    <div class="campo-formulario-pago">
+                        <label for="detalleNumero">Número</label>
+                        <input id="detalleNumero" class="campo-formulario-pago__control" type="text">
+                    </div>
+                    <div class="campo-formulario-pago">
+                        <label for="detalleReferencia">Referencia</label>
+                        <input id="detalleReferencia" class="campo-formulario-pago__control" type="number">
+                    </div>
+                    <div class="campo-formulario-pago">
+                        <label for="detalleImporte">Importe</label>
+                        <input id="detalleImporte" class="campo-formulario-pago__control" type="number">
+                    </div>
+                    <div class="campo-formulario-pago">
+                        <label for="detalleFechaCorte">Fecha corte</label>
+                        <input id="detalleFechaCorte" class="campo-formulario-pago__control" type="date">
+                    </div>
+                    <label class="campo-activo" for="detalleActivo">
+                        <input id="detalleActivo" type="checkbox">
+                        <span>Activo</span>
+                    </label>
+                </form>
+            </div>
+            <div class="modal-footer acciones-modal-detalle">
+                <button type="button" class="boton-formulario-pago boton-actualizar-servicio" data-bs-dismiss="modal">Actualizar</button>
+                <button type="button" class="boton-formulario-pago boton-cancelar-pago" data-bs-dismiss="modal">Cancelar</button>
+            </div>
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="modalConfirmacionPago" tabindex="-1" aria-labelledby="tituloModalConfirmacionPago" aria-hidden="true">
+    <div class="modal-dialog modal-confirmacion-pago__dialog">
+        <div class="modal-content modal-detalle-servicio">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="tituloModalConfirmacionPago">Confirmaci&oacute;n pago</h2>
+            </div>
+            <form id="formularioConfirmacionPago" method="post" action="{% url 'pagos:confirmarPago' %}">
+                {% csrf_token %}
+                <input type="hidden" name="pago_id" id="confirmacionPagoId">
+                <input type="hidden" name="referencia_original" id="confirmacionReferenciaOriginal">
+                <div class="modal-body">
+                    <div class="campo-formulario-pago">
+                        <label for="confirmacionReferencia">Referencia</label>
+                        <input
+                            id="confirmacionReferencia"
+                            class="campo-formulario-pago__control"
+                            name="referencia"
+                            autocomplete="off"
+                            inputmode="numeric"
+                            type="text"
+                            required
+                        >
+                    </div>
+                </div>
+                <div class="modal-footer acciones-modal-detalle">
+                    <button type="submit" class="boton-formulario-pago boton-actualizar-servicio">Validar</button>
+                    <button type="button" class="boton-formulario-pago boton-cancelar-pago" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

@@ -1,7 +1,8 @@
 .contenedor-pagos{
     display: flex;
     flex-direction: column;
-    gap: 35px;
+    gap: 16px;
+    width: 100%;
 }
 
 .Seccion-principal-pagos{
@@ -17,11 +18,251 @@
     display: flex;
     justify-content: space-between; /* Fecha a la izquierda, botones a la derecha */
     align-items: center;
+    gap: 16px;
+    width: 100%;
 }
 
 .seccion-acciones-pagos samp{
     font-size: 24px;
     font-weight: 550;
+    line-height: 1.2;
+}
+
+.seccion-acciones-pagos__botones{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.seccion-collapse-pagos{
+    gap: 0px;
+    width: 100%;
+}
+
+.seccion-collapse-pagos .card{
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(30, 58, 138, 0.12);
+}
+
+.formulario-registro-pago{
+    display: grid;
+    grid-template-columns: minmax(140px, 220px) auto minmax(0, 1fr);
+    grid-template-areas:
+        "cliente cliente cliente"
+        "importe vencido acciones";
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.campo-cliente{
+    grid-area: cliente;
+}
+
+.campo-importe{
+    grid-area: importe;
+}
+
+.campo-vencido{
+    grid-area: vencido;
+}
+
+.campo-formulario-pago{
+    min-width: 0;
+}
+
+.campo-formulario-pago label{
+    display: block;
+    margin-bottom: 7px;
+    color: #1E3A8A;
+    font-weight: 600;
+}
+
+.campo-formulario-pago__control{
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #b8c7df;
+    border-radius: 7px;
+    background: white;
+    outline: none;
+}
+
+.campo-formulario-pago__control:focus{
+    border-color: #014fe5;
+    box-shadow: 0 0 0 3px rgba(1, 79, 229, 0.12);
+}
+
+.campo-vencido{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    margin: 0;
+    padding: 0 8px;
+    color: #1E3A8A;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.campo-vencido input{
+    width: 18px;
+    height: 18px;
+    accent-color: #014fe5;
+}
+
+.boton-formulario-pago{
+    min-height: 44px;
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 7px;
+    background: #06B6D4;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+.boton-formulario-pago:hover{
+    filter: brightness(1.12);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 14px rgba(30, 58, 138, 0.22);
+}
+
+.boton-formulario-pago:active{
+    filter: brightness(0.96);
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 2px 5px rgba(30, 58, 138, 0.18);
+}
+
+.acciones-formulario-pago{
+    grid-area: acciones;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.boton-cancelar-pago{
+    background: #8B5CF6;
+    color: white;
+}
+
+.formulario-nuevo-servicio{
+    display: grid;
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.campo-nombre,
+.campo-primer-apellido,
+.campo-segundo-apellido{
+    grid-column: span 7;
+}
+
+.campo-alias{
+    grid-column: span 3;
+}
+
+.campo-detalle,
+.campo-colonia,
+.campo-calle{
+    grid-column: span 7;
+}
+
+.campo-numero{
+    grid-column: span 3;
+}
+
+.campos-datos-pago-servicio{
+    grid-column: span 14;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+    gap: 12px;
+}
+
+.campo-pagar{
+    grid-area: auto;
+    align-self: end;
+    justify-self: start;
+    padding: 0;
+}
+
+.acciones-formulario-servicio{
+    grid-column: span 10;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 8px;
+    padding-left: 12px;
+}
+
+.modal-detalle-servicio{
+    border: none;
+    border-radius: 10px;
+}
+
+.modal-detalle-servicio .modal-header{
+    color: #1E3A8A;
+    border: 0 !important;
+}
+
+.modal-detalle-servicio .modal-title{
+    font-weight: 700 !important;
+}
+
+.modal-detalle-servicio .modal-footer{
+    border: 0 !important;
+}
+
+.boton-actualizar-servicio{
+    background: #06B6D4;
+    color: white;
+    font-weight: 600;
+}
+
+.formulario-detalle-servicio{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.campo-activo{
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    gap: 8px;
+    min-height: 44px;
+    margin: 0;
+    color: #1E3A8A;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.campo-activo input{
+    width: 18px;
+    height: 18px;
+    accent-color: #014fe5;
+}
+
+.acciones-modal-detalle{
+    gap: 8px;
+}
+
+.modal-confirmacion-pago__dialog{
+    width: calc(100% - 32px);
+    max-width: 260px;
+    margin: 88px auto 16px;
+}
+
+.modal-confirmacion-pago__dialog .modal-body{
+    padding: 12px 16px 8px;
+}
+
+.modal-confirmacion-pago__dialog .modal-footer{
+    padding: 8px 16px 16px;
 }
 
 .boton-Filtro{
@@ -32,9 +273,40 @@
     background-color: #014fe5;
 }
 
+.boton-RegistrarPago{
+    background-color: #014fe5;
+}
+
 .botones-Acciones{
     background-color: #499effe3;
     /*background-color: #3b92f6;*/
+}
+
+.seccion-acciones-pagos__botones .botones,
+.seccion-tabla .botones,
+.boton-estatus{
+    transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+.seccion-acciones-pagos__botones .botones:hover,
+.seccion-tabla .botones:hover,
+.boton-estatus:hover{
+    filter: brightness(1.12);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 14px rgba(30, 58, 138, 0.22);
+}
+
+.seccion-acciones-pagos__botones .botones:active,
+.seccion-tabla .botones:active,
+.boton-estatus:active{
+    filter: brightness(0.96);
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 2px 5px rgba(30, 58, 138, 0.18);
+}
+
+.boton-estatus{
+    border: 0;
+    cursor: pointer;
 }
 
 .estatus-pagado{
@@ -52,4 +324,187 @@
     border: #014fe5;
 }
 
+@media (max-width: 1024px){
+    .contenedor-pagos{
+        gap: 14px;
+    }
 
+    .seccion-acciones-pagos samp{
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 800px){
+    .seccion-acciones-pagos{
+        align-items: flex-start;
+    }
+
+    .seccion-acciones-pagos samp{
+        font-size: 20px;
+    }
+
+    .seccion-acciones-pagos__botones{
+        gap: 6px;
+    }
+
+    .estatus-pagado,
+    .estatus-pendiente{
+        font-size: 13px;
+    }
+
+    .formulario-registro-pago{
+        grid-template-columns: minmax(140px, 220px) auto;
+        grid-template-areas:
+            "cliente cliente"
+            "importe vencido"
+            "acciones acciones";
+    }
+
+    .formulario-nuevo-servicio{
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    .campo-nombre,
+    .campo-primer-apellido,
+    .campo-segundo-apellido,
+    .campo-alias,
+    .campo-detalle,
+    .campo-colonia,
+    .campo-calle{
+        grid-column: span 6;
+    }
+
+    .campos-datos-pago-servicio{
+        grid-column: 1 / -1;
+    }
+
+    .campo-numero{
+        grid-column: span 3;
+    }
+
+    .acciones-formulario-servicio{
+        grid-column: 1 / -1;
+        padding-left: 0;
+    }
+
+    .formulario-detalle-servicio{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 480px){
+    .contenedor-pagos{
+        gap: 12px;
+    }
+
+    .seccion-acciones-pagos{
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    .seccion-acciones-pagos samp{
+        display: block;
+        font-size: 16px;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    .seccion-acciones-pagos__botones{
+        justify-content: flex-end;
+        width: auto;
+        flex-wrap: nowrap;
+        gap: 4px;
+    }
+
+    .seccion-collapse-pagos .card{
+        font-size: 14px;
+        padding: 14px;
+    }
+
+    .formulario-registro-pago{
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+            "cliente cliente"
+            "importe vencido"
+            "acciones acciones";
+        align-items: stretch;
+    }
+
+    .campo-vencido{
+        align-self: flex-end;
+    }
+
+    .acciones-formulario-pago{
+        justify-content: stretch;
+    }
+
+    .acciones-formulario-pago .boton-formulario-pago{
+        flex: 1;
+    }
+
+    .formulario-nuevo-servicio{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .formulario-nuevo-servicio .campo-formulario-pago{
+        grid-column: span 1;
+    }
+
+    .formulario-nuevo-servicio .campo-nombre{
+        grid-column: 1 / -1;
+    }
+
+    .formulario-nuevo-servicio .campos-datos-pago-servicio{
+        display: contents;
+    }
+
+    .acciones-formulario-servicio{
+        grid-column: 1 / -1;
+        justify-content: stretch;
+    }
+
+    .acciones-formulario-servicio .boton-formulario-pago{
+        flex: 1;
+    }
+
+    .formulario-detalle-servicio{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .formulario-detalle-servicio .campo-modal-nombre{
+        grid-column: 1 / -1;
+    }
+
+    .acciones-modal-detalle .boton-formulario-pago{
+        flex: 1;
+    }
+
+    .seccion-acciones-pagos__botones .botones,
+    .seccion-tabla .botones,
+    .boton-estatus,
+    .boton-formulario-pago{
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.16s ease, filter 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .seccion-acciones-pagos__botones .botones:active,
+    .seccion-tabla .botones:active,
+    .boton-estatus:active,
+    .boton-formulario-pago:active{
+        filter: brightness(1.08);
+        transform: translateY(1px) scale(0.96);
+        box-shadow: 0 2px 5px rgba(30, 58, 138, 0.2);
+    }
+}
+
+.resultados-clientes{display:flex;flex-direction:column;gap:4px;max-height:260px;overflow-y:auto;margin-top:6px}
+.resultado-cliente{width:100%;padding:10px 12px;text-align:left;border:1px solid #b8c7df;border-radius:7px;background:#fff;color:#1e3a8a;cursor:pointer}
+.resultado-cliente:hover,.resultado-cliente:focus-visible{background:#e8f1ff;outline:2px solid #014fe5;outline-offset:-2px}
+
+.seccion-tabla td.estado-pago-vencido{
+    color: #dc2626;
+    font-weight: 600;
+}
